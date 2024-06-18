@@ -1,0 +1,27 @@
+{
+  "name": "ts-postgres",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "drizzle:generate": "drizzle-kit generate",
+    "drizzle:migrate": "tsx src/migrations/migrate.ts",
+    "start": "npx ts-node main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/node": "^20.14.2",
+    "color": "^4.2.3",
+    "dotenv": "^16.4.5",
+    "postgres": "^3.4.4"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.22.7",
+    "drizzle-orm": "^0.31.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
