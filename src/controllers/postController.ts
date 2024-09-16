@@ -27,7 +27,7 @@ export const editPost=asyncHandler(async(req:Request,res:Response,next:NextFunct
         {where:eq(postTable.postId,postId)}
     );
     const decodedToken:any=jwt.verify(token,process.env.JWT_SECRET as string )
-    const userId=decodedToken.email;
+    const userId=decodedToken.userId;
     if(!post){
        res.status(404).json({message:"post doesn`t exists"});
        return  ;
@@ -66,6 +66,21 @@ export const postsAll=asyncHandler(async(req:Request,res:Response,next:NextFunct
     else{
         res.status(404).json({message:"Unable to find the posts "})
     }
-})
-
+});
+export const deletePost=asyncHandler(async(req:Request,res:Response,next:NextFunction)=>{
+    const {postId}=req.body;
+    const post=await db.query.postTable.findFirst({where:eq(postTable.postId,postId)});
+    if(!post){
+     res.status(400).json({message:"The post is not avialable"});
+     return ;
+    }
+    const isDeleted=await db.delete(postTable).where(eq(postTable.postId,postId)).returning();
+    if (isDeleted.length > 0) {
+     res.status(200).json({ success: true, message: "post is  deleted successfully", postId:isDeleted[0].postId });
+     
+   } else {
+     res.status(400).json({ success: false, message: "post not found or could not be marked as deleted" });
+     return ;
+   }
+ })
 

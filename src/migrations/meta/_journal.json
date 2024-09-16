@@ -15,6 +15,13 @@
       "when": 1719314836306,
       "tag": "0001_huge_jigsaw",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1726475456584,
+      "tag": "0002_exotic_vertigo",
+      "breakpoints": true
     }
   ]
 }

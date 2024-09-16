@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { db } from '../config/db';
 import { userTable } from '../models/userTable';
 import { Request, Response, NextFunction } from "express";
-import { eq, noopEncoder, or } from "drizzle-orm";
+import { and, eq, noopEncoder, or } from "drizzle-orm";
 import expressAsyncHandler from "express-async-handler";
 import path from "path";
 import { error } from "console";
@@ -213,4 +213,35 @@ export const getUserDetails=asyncHandler(async(req:Request,res:Response)=>{
   }
   
   })
+});
+
+export const editProfile = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+  const { profiledetails } = req.body;
+  const token = req.cookies['access_token'];
+
+  if (!token) {
+   res.status(401).json({ message: "Unauthorized access" });
+   return ;
+  }
+  const decodedToken:any=jwt.verify(token,process.env.JWT_SECRET as string )
+  if (!profiledetails || Object.keys(profiledetails).length === 0) {
+     res.status(400).json({ message: "No profile details provided" });
+     return ;
+  }
+  const decodedUserID=decodedToken.userId;
+  const changedProfile=await db.update(userTable)
+    .set(profiledetails)
+    .where(eq(userTable.userId,decodedUserID));
+    if(!changedProfile){
+      res.status(400).json({message:"Unable to change the profile details"});
+      return ;
+    }
+     res.status(200).json({ message: "Profile changed successfully" });
+});
+
+export const changePassword=asyncHandler(async(req:Request,res:Response,next:NextFunction)=>{
+          const {emailOruser,password,confirmPass}=req.body;
+         
+
+
 });

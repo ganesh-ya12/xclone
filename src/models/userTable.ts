@@ -37,6 +37,16 @@ export const commentTable = pgTable('comment', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
+//otp Table
+export const otpTable=pgTable('otp',{
+      id:serial('id').primaryKey(),
+      userId:varchar('user_id')
+         .notNull()
+         .references(()=>userTable.userId,{onDelete:'cascade'}),
+      otp:varchar('otp',{length:6}).notNull(),
+      createdAt:timestamp('created_At').defaultNow(),
+      expriesAt:timestamp('expries_At').notNull()
+})
 // Relationships
 export const userRelations = relations(userTable, ({ many }) => ({
   posts: many(postTable),

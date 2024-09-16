@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { createPost, editPost, postsAll, userPosts } from "../controllers/postController";
+import { createPost, deletePost, editPost, postsAll, userPosts } from "../controllers/postController";
 import { protect } from "../middleware/authmiddleware";
 const router=Router();
 router.post('/create',protect,createPost);
 router.post('/find',userPosts);
-router.post('/edit',protect,editPost);
+router.put('/edit',protect,editPost);
 router.get('/posts',postsAll);
+router.delete('/delete',protect,deletePost);
 export default router;
