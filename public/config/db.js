@@ -27,8 +27,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.db = void 0;
+//db.ts
 const postgres_js_1 = require("drizzle-orm/postgres-js");
 const postgres_1 = __importDefault(require("postgres"));
 const schema = __importStar(require("../models/userTable"));
+const dotenv_1 = require("dotenv");
+(0, dotenv_1.config)();
 const client = (0, postgres_1.default)(process.env.DATABASE_URL);
 exports.db = (0, postgres_js_1.drizzle)(client, { schema, logger: true });

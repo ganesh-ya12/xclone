@@ -1,1 +1,0 @@
-ALTER TABLE "user" ADD COLUMN "password" varchar(100) NOT NULL;

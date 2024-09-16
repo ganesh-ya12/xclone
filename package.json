@@ -4,24 +4,40 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "drizzle:generate": "drizzle-kit generate",
-    "drizzle:migrate": "tsx src/migrations/migrate.ts",
-    "start": "npx ts-node main.ts"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx src/migrations/migrate.ts",
+    "start": "nodemon"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/color": "^3.0.6",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/express": "^4.17.21",
     "@types/node": "^20.14.2",
+    "@types/passport-jwt": "^4.0.1",
+    "@types/validator": "^13.12.0",
+    "bcrypt": "^5.1.1",
     "color": "^4.2.3",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
-    "postgres": "^3.4.4"
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "postgres": "^3.4.4",
+    "validator": "^13.12.0"
   },
   "devDependencies": {
     "drizzle-kit": "^0.22.7",
     "drizzle-orm": "^0.31.2",
+    "nodemon": "^3.1.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   }
 }
