@@ -45,7 +45,7 @@ export const otpTable=pgTable('otp',{
          .references(()=>userTable.userId,{onDelete:'cascade'}),
       otp:varchar('otp',{length:6}).notNull(),
       createdAt:timestamp('created_At').defaultNow(),
-      expriesAt:timestamp('expries_At').notNull()
+      expiresAt:timestamp('expires_At').notNull()
 })
 // Relationships
 export const userRelations = relations(userTable, ({ many }) => ({

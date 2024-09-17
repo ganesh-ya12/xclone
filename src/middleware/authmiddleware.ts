@@ -22,7 +22,7 @@ export const protect = asyncHandler(async (req: Request, res: Response, next: Ne
     try {
         const decoded = jwt.verify(token, jwtSecret) as jwt.JwtPayload;
 
-        console.log("Decoded:", decoded);
+       // console.log("Decoded:", decoded);
 
         const user = await db.select().from(userTable).where(eq(userTable.email, decoded.email)).execute();
 

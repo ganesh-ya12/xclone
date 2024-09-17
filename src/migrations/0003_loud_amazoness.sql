@@ -1,0 +1,1 @@
+ALTER TABLE "otp" RENAME COLUMN "expries_At" TO "expires_At";

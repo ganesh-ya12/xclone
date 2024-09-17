@@ -27,7 +27,7 @@ export const createComment=asyncHandler(async(req:Request,res:Response,next:Next
 // })
 export const editComment=asyncHandler(async(req:Request,res:Response,next:NextFunction)=>{
     const {commentId,postId,content}=req.body;
-    const token=req.cookies('access_token');
+    const token=req.cookies.jwt;
     const comment= await db.query.commentTable.findFirst({where:eq(commentTable.commentId,commentId)}).execute();
     const decodedToken=jwt.verify(token,process.env.JWT_SECRET as string);
     
