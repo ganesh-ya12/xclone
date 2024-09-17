@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createPost, deletePost, editPost, postsAll, userPosts } from "../controllers/postController";
+import { likePost,disLikePost } from "../controllers/likeController";
 import { protect } from "../middleware/authmiddleware";
 const router=Router();
 router.post('/create',protect,createPost);
@@ -7,4 +8,6 @@ router.post('/find',userPosts);
 router.put('/edit',protect,editPost);
 router.get('/posts',postsAll);
 router.delete('/delete',protect,deletePost);
+router.post('/:id/like',protect,likePost);
+router.delete('/:id/dislike',protect,disLikePost);
 export default router;

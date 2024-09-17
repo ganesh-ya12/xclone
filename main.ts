@@ -3,7 +3,7 @@ import  Express  from 'express'; // Adjust the path based on your project struct
 import userRouter from './src/routes/userRouter'; // Adjust the path based on your project structure
 import cookieParser from 'cookie-parser';
 import postRouter from './src/routes/postRouter';
-import commentRouter from "./src/routes/comemntRouter";
+import commentRouter from "./src/routes/commentRouter";
 const app =  Express();
 const PORT = process.env.PORT || 3000;
 
@@ -13,8 +13,8 @@ app.use(cookieParser());
 
 // Routes
 app.use('/user', userRouter);
-app.use('/post',postRouter)
-app.use('/comment',commentRouter);
+app.use('/posts',postRouter)
+app.use('/comments',commentRouter);
 
 
 // Start server
