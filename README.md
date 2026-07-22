@@ -1,41 +1,84 @@
-# XClone
-XClone is a social media clone application built using Drizzle ORM, PostgreSQL, and TypeScript. It allows users to create posts, like, comment, and authenticate users. It also includes features like "like by" functionality and more.
-## Installation
-1.Clone the repository
- ```bash
- git clone https://github.com/your-username/xclone.git
- ```
-### For running backend 
-1. change to server directory
+# Social Connection Platform
+
+A full-stack social platform where users can register, authenticate, and share posts with likes and comments. I built it as a hands-on project to learn **TypeScript** and **PostgreSQL** end to end — modelling relational data with Drizzle ORM, writing a typed Express API, and wiring it up to a React frontend.
+
+## What I set out to learn
+
+- **TypeScript** on the backend — typed Express routes, controllers, and a typed data layer instead of plain JavaScript.
+- **PostgreSQL** — relational schema design (users, posts, likes, comments), foreign keys, and migrations.
+- **Drizzle ORM** — defining schema in code, generating SQL migrations, and running type-safe queries.
+- **Auth** — issuing and verifying JSON Web Tokens (JWT) and hashing passwords.
+- **Containerisation** — running the app and Redis with Docker Compose for dev and prod.
+
+## Features
+
+- User registration and JWT-based authentication
+- Create, edit, and delete posts
+- Like / unlike posts and see who liked a post ("liked by")
+- Comment on posts
+- Change password
+
+## Tech stack
+
+- **Backend**: [Node.js](https://nodejs.org/en), [Express](https://expressjs.com/), [TypeScript](https://www.typescriptlang.org/), [Drizzle ORM](https://orm.drizzle.team/)
+- **Database**: [PostgreSQL](https://www.postgresql.org/)
+- **Cache**: [Redis](https://redis.io/)
+- **Frontend**: [React](https://react.dev/) + [Vite](https://vitejs.dev/), [Tailwind CSS](https://tailwindcss.com/)
+- **Auth**: JSON Web Tokens (JWT)
+- **Infra**: [Docker Compose](https://docs.docker.com/compose/)
+
+## Getting started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en)
+- [PostgreSQL](https://www.postgresql.org/download/)
+- (Optional) [Docker](https://www.docker.com/) if you prefer to run via Compose
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/ganesh-ya12/social-connection-platform.git
+cd social-connection-platform
+```
+
+### 2. Run the backend
+
 ```bash
 cd server
+npm install
 ```
-2. Install the dependencies:
+
+Create a `.env` file in `server/` with your database connection and JWT secret (see `.env.development` for the expected variables).
+
+Generate and apply the database schema:
+
 ```bash
-npm i
+npm run db:generate   # generate SQL migrations from the Drizzle schema
+npm run db:migrate    # apply migrations to your PostgreSQL database
 ```
-3. Generate the psql schemma by running
-```bash
-npm run db:generate
-```
-4. Migrate the psql schemma to the db to create tables
-```bash
-npm run db:migrate
-```
-5. Run the application:
+
+Start the server:
+
 ```bash
 npm start
 ```
-## prerequisites
-1.Install PostgreSQL .[Download PostgreSQL](https://www.postgresql.org/download/)
 
+### 3. Run the frontend
 
-## Technologies Used
-- **Backend**: [Node.js](https://nodejs.org/en), [Express](https://expressjs.com/), [Drizzle ORM](https://orm.drizzle.team/), [PostgreSQL](https://www.postgresql.org/)
-- **Frontend**: TypeScript
-- **Database**: PostgreSQL
-- **Authentication**: JSON Web Tokens (JWT)
+```bash
+cd client
+npm install
+npm run dev
+```
+
+### Running with Docker (optional)
+
+```bash
+cd server
+docker compose -f docker-compose.dev.yml up --build
+```
+
 ## Contact
 
- If you have any questions or feedback, feel free to contact me at git hub [Ganesh](https://github.com/ganesh-ya12).
-
+Questions or feedback? Find me on GitHub — [Ganesh](https://github.com/ganesh-ya12).

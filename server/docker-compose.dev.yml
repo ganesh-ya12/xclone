@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  redis:
+    image: "redis:alpine"
+    container_name: scp_redis_dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-dev-data:/data
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: scp_server_dev
+    working_dir: /app
+    volumes:
+       - ./server:/app
+       - /app/node_modules
+    env_file:
+      - ./server/.env.development
+    environment:
+      - NODE_ENV=development
+      - PORT=4000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+    ports:
+      - 4000:4000
+    command: sh -c "npm run dev"
+volumes:
+  redis-dev-data:
